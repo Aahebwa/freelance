@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}">
   </head>
   <body>
+    <ul>
+    {% if user.is_authenticated %}
+      <li><a href="/">Home</a></li>
+      <li><a href="">Inbox</a></li>
+      <li><a href={% url 'dashboard:logout' %}>logout</a></li>
+    {% else %}
+      <li><a href="/">Home</a></li>
+      <li><a href={% url 'dashboard:login' %}>login</a></li>
+      <li><a href={% url 'dashboard:signup' %}>Signup</a></li>
+    {% endif %}
+    </ul>
+    
     {% block content %}
 
     {% endblock %}
